@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  # Servidor Nginx
+  nginx:
+    image: nginx:alpine
+    container_name: game_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.config:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - game_network
+
+  # PHP-FPM
+  php:
+    build:
+      context: ./php/docker
+      dockerfile: Dockerfile
+    container_name: game_php
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+      - php_sessions:/var/lib/php/sessions
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - game_network
+    depends_on:
+      - mysql
+
+  # MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: game_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - game_network
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: game_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - game_network
+
+networks:
+  game_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  php_sessions:

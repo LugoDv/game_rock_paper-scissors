@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +22,8 @@
 <body>
 
   <?php
-  if (!session_id()) {
-    session_start();
-  }
+
+
 
 
 
