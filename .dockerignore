@@ -1,0 +1,59 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yaml
+docker-compose.yml
+.dockerignore
+
+# Documentación
+README.md
+*.md
+DEPLOYMENT.md
+DOCKER_GUIDE.md
+FAQ.md
+CHECKLIST.md
+
+# Variables de entorno (se crean en el servidor)
+.env
+.env.local
+.env.example
+
+# IDE y editores
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Node modules (si usas npm)
+node_modules/
+
+# Backups
+*.backup
+*.bak
+backup-*.tar.gz
+backups/
+
+# Certificados SSL (se configuran en el servidor)
+*.pem
+*.key
+*.crt
+ssl/
+
+# Scripts de desarrollo
+deploy.sh
+manage.sh
+
+# Temporales
+tmp/
+temp/
+*.tmp
