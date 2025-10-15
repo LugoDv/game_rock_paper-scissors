@@ -1,0 +1,88 @@
+:root {
+  --font-8bit: "Press Start 2P", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: var(--font-8bit);
+}
+
+main {
+  position: relative;
+  height: 100vh;
+  background-image: url("../assets/data.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+main > * {
+  position: relative;
+  z-index: 2;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+
+/* .table-container .stadistics {
+  border: 4px solid white;
+
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8), -4px -4px 0 rgba(255, 255, 255, 0.1);
+
+  padding: 20px;
+  margin: 10px;
+} */
+
+table th {
+  border: 2px solid white;
+  padding: 4px;
+}
+
+table tr td {
+  border: 2px solid white;
+  border-top: none;
+  padding: 4px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.navigation button {
+  background: transparent;
+  border: 2px solid #05f25c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.navigation button:hover {
+  background-color: #05f244;
+  color: #1d0926;
+}

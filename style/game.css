@@ -1,0 +1,125 @@
+:root {
+  --font-8bit: "Press Start 2P", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: var(--font-8bit);
+}
+
+main {
+  height: 100vh;
+  background-image: url("../assets/freepik__upload__35577.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body {
+  font-family: var(--font-8bit);
+  background-color: #1d0926;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* .game-container h1 {
+  font-size: 2rem;
+  color: #f2059d;
+  text-shadow: 2px 2px 4px #000000;
+} */
+
+.gaming-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+@media (max-width: 800px) {
+  .gaming-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.game-container h2 {
+  font-size: 1rem;
+  text-align: center;
+  color: #05f244;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.gaming-container img {
+  width: 250px;
+  margin: 20px;
+  height: auto;
+  border: solid 2px #f2059d;
+  background: transparent;
+}
+.result-section {
+  text-align: center;
+}
+
+.result-section .result-text {
+  color: #05f244;
+  text-shadow: 2px 2px 0 #030403, 4px 4px 0 rgba(0, 0, 0, 0.5);
+
+  transition: all 0.1s ease;
+}
+
+.result-section .result-text:hover {
+  color: #05f25c;
+  text-shadow: 2px 2px 0 #a1f7b5, 4px 4px 0 rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.option-container {
+  display: flex;
+  background-color: rgba(29, 9, 38, 0.5);
+}
+
+.option-container button {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.option-container img {
+  width: 180px;
+  height: auto;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.option-container img:hover {
+  transform: scale(1.1);
+}
+
+.navigation {
+  margin-top: 20px;
+}
+.navigation button {
+  background: transparent;
+  border: 2px solid #05f25c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.navigation button:hover {
+  background-color: #05f244;
+  color: #1d0926;
+}
