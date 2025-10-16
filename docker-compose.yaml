@@ -1,13 +1,12 @@
 version: "3.8"
 
 services:
-  # Servidor Nginx
+  # Servidor Nginx (sin puertos - NPM maneja el proxy)
   nginx:
     image: nginx:alpine
     container_name: game_nginx
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - "80" # Puerto interno para NPM
     volumes:
       - .:/var/www/html
       - ./nginx/default.config:/etc/nginx/conf.d/default.conf
@@ -15,6 +14,7 @@ services:
       - php
     networks:
       - game_network
+      - npm-nw # Red de NPM
 
   # PHP-FPM
   php:
@@ -53,7 +53,7 @@ services:
     networks:
       - game_network
 
-  # phpMyAdmin
+  # phpMyAdmin (disponible por puerto y NPM)
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: game_phpmyadmin
@@ -63,15 +63,20 @@ services:
       PMA_USER: root
       PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "8080:80"
+      - "8080:80" # Acceso directo por puerto
+    expose:
+      - "80" # También disponible para NPM
     depends_on:
       - mysql
     networks:
       - game_network
+      - npm-nw # Red de NPM (opcional)
 
 networks:
   game_network:
     driver: bridge
+  npm-nw:
+    external: true # Red externa de Nginx Proxy Manager
 
 volumes:
   mysql_data:
