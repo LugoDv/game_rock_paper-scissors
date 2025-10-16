@@ -52,6 +52,7 @@ services:
       - "3307:3306"
     networks:
       - game_network
+      - npm-nw # Red de NPM (opcional)
 
   # phpMyAdmin (disponible por puerto y NPM)
   phpmyadmin:
